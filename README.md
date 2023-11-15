@@ -32,4 +32,5 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# next-mantine-dashboard- git init git add . git commit -m first commit git branch -M dev git remote add origin https://github.com/taekungkub/next-mantine-dashboard-.git git push -u origin dev
+
+[![Screen-Shot-2566-11-15-at-13.25.15.md.png](https://img5.pic.in.th/file/secure-sv1/Screen-Shot-2566-11-15-at-13.25.15.md.png)](https://pic.in.th/image/T0AK5T)
