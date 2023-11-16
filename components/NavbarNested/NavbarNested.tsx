@@ -1,3 +1,4 @@
+"use client"
 import { Group, Code, ScrollArea, rem } from "@mantine/core"
 import { LinksGroup } from "../NavbarLinksGroup/NavbarLinksGroup"
 import { Logo } from "./Logo"

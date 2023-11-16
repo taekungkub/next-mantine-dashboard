@@ -1,4 +1,6 @@
 import "@mantine/core/styles.css"
+import "./globals.css"
+
 import React from "react"
 import { ColorSchemeScript } from "@mantine/core"
 import { Providers } from "../context/providers"

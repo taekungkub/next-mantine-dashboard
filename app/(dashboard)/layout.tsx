@@ -1,5 +1,5 @@
 "use client"
-import { useDisclosure, useHeadroom } from "@mantine/hooks"
+import { useDisclosure } from "@mantine/hooks"
 import { AppShell, Box, LoadingOverlay, rem } from "@mantine/core"
 import { NavbarNested } from "@/components/NavbarNested/NavbarNested"
 import HeaderMegaMenu from "@/components/HeaderMegaMenu/HeaderMegaMenu"
