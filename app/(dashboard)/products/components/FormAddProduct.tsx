@@ -1,5 +1,5 @@
 "use client"
-import { Button, Card, Divider, Flex, Grid, Group, TextInput, Image, Textarea, Select, MultiSelect } from "@mantine/core"
+import { Button, Card, Divider, Flex, Grid, Group, TextInput, Image, Textarea, Select, MultiSelect, Box } from "@mantine/core"
 import { useForm } from "@mantine/form"
 import { FileWithPath } from "@mantine/dropzone"
 import { useEffect, useState } from "react"
@@ -136,14 +136,14 @@ function FormAddProduct({ inititialForm, category }: Props) {
           <DropImage handleSetFileToList={handleSetFileToList} isHasImage={isHasImage} images={images || []} handleDeleteFile={handleDeleteFile} />
         </Grid.Col>
       </Grid>
-      <Card p={0} py={20} my={10} style={{ position: "sticky", bottom: 0 }}>
+      <Box py={"lg"} bg={"var(--mantine-color-body)"} style={{ position: "sticky", bottom: 0 }}>
         <Group>
           <Button type="submit" loading={isLoading}>
             Submit
           </Button>
           <Button variant="subtle">Discard</Button>
         </Group>
-      </Card>
+      </Box>
     </form>
   )
 }

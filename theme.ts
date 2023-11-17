@@ -37,14 +37,12 @@ export const theme = createTheme({
     }),
     Card: Card.extend({
       defaultProps: {
-        p: "md",
         withBorder: true,
         radius: "md",
       },
     }),
     Paper: Paper.extend({
       defaultProps: {
-        p: "md",
         withBorder: true,
         radius: "md",
       },

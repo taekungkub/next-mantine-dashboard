@@ -1,5 +1,5 @@
 "use client"
-import { Group, Code, ScrollArea, rem } from "@mantine/core"
+import { Group, Code, ScrollArea, rem, Box } from "@mantine/core"
 import { LinksGroup } from "../NavbarLinksGroup/NavbarLinksGroup"
 import { Logo } from "./Logo"
 import classes from "./NavbarNested.module.css"
