@@ -2,7 +2,7 @@
 
 import { MantineProvider } from "@mantine/core"
 import { SessionProvider } from "next-auth/react"
-import { theme } from "@/theme"
+import { theme } from "@/styles/theme"
 import { Notifications } from "@mantine/notifications"
 
 import "@mantine/notifications/styles.css"

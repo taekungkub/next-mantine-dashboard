@@ -23,7 +23,11 @@
 
     "paths": {
       "@/*": ["./*"],
-      "@/components/*": ["components/*"]
+      "@/components/*": ["components/*"],
+      "@/styles/*": ["styles/*"],
+      "@/context/*": ["context/*"],
+      "@/services/*": ["services/*"],
+      "@/constant/*": ["constant/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".next/types/app/layout.tss", "app/auth/(unauthorized)/resetpassword"],
