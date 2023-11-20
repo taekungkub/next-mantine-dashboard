@@ -1,4 +1,4 @@
-import axios from "axios"
+import { CustomerTy } from "../types/type"
 
 const BASE_URL = "https://dummyjson.com"
 
@@ -13,15 +13,17 @@ export default {
       method: "GET",
     })
   },
-  customers() {
-    return fetch(`${BASE_URL}/users`, {
-      method: "GET",
-    })
+  async customers(): Promise<{
+    users: CustomerTy[]
+  }> {
+    const response = await fetch(`${BASE_URL}/users`)
+    const customers = await response.json()
+    return customers
   },
-  customerById(id: number) {
-    return fetch(`${BASE_URL}/users/${id}`, {
-      method: "GET",
-    })
+  async customerById(id: string): Promise<CustomerTy> {
+    const response = await fetch(`${BASE_URL}/users/${id}`)
+    const customers = await response.json()
+    return customers
   },
 
   categories() {

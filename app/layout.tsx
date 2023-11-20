@@ -1,5 +1,5 @@
 import "@mantine/core/styles.css"
-import "./globals.css"
+import "@/styles/globals.css"
 
 import React from "react"
 import { ColorSchemeScript } from "@mantine/core"

@@ -7,6 +7,7 @@ import { IconChevronUp, IconEdit, IconEye, IconSelector, IconTrash } from "@tabl
 import { ProductTy } from "@/types/type"
 import ProductModal from "./ProductModal"
 import { modals } from "@mantine/modals"
+import { useRouter } from "next/navigation"
 
 interface Props {
   data: Array<ProductTy>
@@ -36,6 +37,8 @@ export default function ProductsTable({ data }: Props) {
     const to = from + pageSize
     setRecords(data.slice(from, to))
   }, [page, pageSize])
+
+  const router = useRouter()
 
   return (
     <>
@@ -79,17 +82,7 @@ export default function ProductsTable({ data }: Props) {
                 >
                   <IconEye size={16} />
                 </ActionIcon>
-                <ActionIcon
-                  size="sm"
-                  variant="subtle"
-                  color="blue"
-                  onClick={() =>
-                    modals.open({
-                      title: "Product infomation",
-                      children: <ProductModal data={product} action="edit" />,
-                    })
-                  }
-                >
+                <ActionIcon size="sm" variant="subtle" color="blue" onClick={() => router.push("/products/edit/" + product.id)}>
                   <IconEdit size={16} />
                 </ActionIcon>
                 <ActionIcon

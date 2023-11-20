@@ -1,7 +1,15 @@
-import React from "react"
+import DummyServices from "@/services/DummyServices"
+import { SectionUserStats } from "../components/SectionCustomer"
+import CustomerDataTable from "../components/CustomerDataTable"
 
-type Props = {}
+export default async function page() {
+  const res = await DummyServices.customers()
 
-export default function page({}: Props) {
-  return <div>Customer page</div>
+  return (
+    <>
+      Customer page
+      <SectionUserStats />
+      <CustomerDataTable list={res.users} />
+    </>
+  )
 }

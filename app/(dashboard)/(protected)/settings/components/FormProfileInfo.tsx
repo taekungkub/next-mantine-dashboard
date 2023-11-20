@@ -25,8 +25,8 @@ export default function FormProfileInfo({}: Props) {
       <TextInput label="Location" {...form.getInputProps("location")} mt={"md"} />
       <Textarea label="About you" {...form.getInputProps("about")} mt={"md"} />
       <Box mt={"md"}>
-        <Button variant={"subtle"}>Cancel</Button>
         <Button type={"submit"}>Save</Button>
+        <Button variant={"subtle"}>Cancel</Button>
       </Box>
     </form>
   )

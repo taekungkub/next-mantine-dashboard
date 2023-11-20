@@ -1,4 +1,4 @@
-import { IconAlertCircle, IconComponents, IconError404, IconFileAnalytics, IconGauge, IconLock, IconLockAccess, IconPackage, IconShield, IconUsers } from "@tabler/icons-react"
+import { IconAlertCircle, IconBook, IconComponents, IconError404, IconFileAnalytics, IconGauge, IconLock, IconLockAccess, IconPackage, IconShield, IconUsers } from "@tabler/icons-react"
 
 export const navbarData = [
   { label: "Dashboard", icon: IconGauge, link: "/dashboard" },
@@ -20,7 +20,7 @@ export const navbarData = [
     icon: IconPackage,
     links: [
       { label: "Product List", link: "/products" },
-      { label: "Add Product", link: "/products/add" },
+      { label: "New Product", link: "/products/add" },
       { label: "Edit Product", link: "/products/edit/1" },
       { label: "Order List", link: "/sales/orders" },
       { label: "Order detail", link: "/sales/order/1" },
@@ -37,6 +37,15 @@ export const navbarData = [
       { label: "Forgot Password", link: "/auth/forgotpassword" },
       { label: "Reset Password", link: "/auth/resetpassword" },
       { label: "Code Verify", link: "/auth/code-verify" },
+    ],
+    initiallyOpened: false,
+  },
+  {
+    label: "Knowledge Base",
+    icon: IconBook,
+    links: [
+      { label: "Manage Article", link: "/knowledge-base/article/manage" },
+      { label: "Edit Article", link: "/knowledge-base/article/edit" },
     ],
     initiallyOpened: false,
   },

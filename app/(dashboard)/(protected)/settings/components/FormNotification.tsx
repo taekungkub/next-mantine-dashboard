@@ -34,8 +34,8 @@ export function FormNotification() {
         </Text>
         {items}
         <Box mt={"md"}>
-          <Button variant={"subtle"}>Cancel</Button>
           <Button>Save</Button>
+          <Button variant={"subtle"}>Cancel</Button>
         </Box>
       </Box>
     </>

@@ -46,8 +46,8 @@ export default function FormProfilePicture({}: Props) {
     <form onSubmit={form.onSubmit((values) => handleSubmit())}>
       <FileInput variant="filled" radius="md" placeholder="Input File" leftSection={<IconFile />} {...form.getInputProps("file")} accept="image/png,image/jpeg" />
       <Box mt={"md"}>
-        <Button variant={"subtle"}>Cancel</Button>
         <Button type="submit">Save</Button>
+        <Button variant={"subtle"}>Cancel</Button>
       </Box>
     </form>
   )

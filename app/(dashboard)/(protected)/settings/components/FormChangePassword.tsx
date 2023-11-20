@@ -32,8 +32,8 @@ export default function FormChangePassword({}: Props) {
         </Stack>
 
         <Box mt={"md"}>
-          <Button variant={"subtle"}>Cancel</Button>
           <Button type={"submit"}>Save</Button>
+          <Button variant={"subtle"}>Cancel</Button>
         </Box>
       </Box>
     </form>
