@@ -1,15 +1,19 @@
-import DummyServices from "@/services/DummyServices"
 import { SectionUserStats } from "../components/SectionCustomer"
 import CustomerDataTable from "../components/CustomerDataTable"
+import { fetchCustomer } from "@/hooks/useDummyJson"
+import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query"
 
 export default async function page() {
-  const res = await DummyServices.customers()
+  const queryClient = new QueryClient()
+
+  fetchCustomer()
 
   return (
     <>
-      Customer page
-      <SectionUserStats />
-      <CustomerDataTable list={res.users} />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <SectionUserStats />
+        <CustomerDataTable />
+      </HydrationBoundary>
     </>
   )
 }

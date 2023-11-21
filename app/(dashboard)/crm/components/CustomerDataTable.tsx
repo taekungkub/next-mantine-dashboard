@@ -10,13 +10,13 @@ import { Anchor, Button } from "@mantine/core"
 import Link from "next/link"
 import { useDisclosure } from "@mantine/hooks"
 import EditCustomerDrawer from "../components/EditCustomerDrawer"
-interface Props {
-  list: Array<CustomerTy>
-}
+import { getAllCustomers } from "@/hooks/useDummyJson"
 
 const PAGE_SIZES = [10, 15, 20]
 
-export default function CustomerDataTable({ list }: Props) {
+export default function CustomerDataTable() {
+  const { data: list, isLoading } = getAllCustomers()
+
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(PAGE_SIZES[1])
 
@@ -25,7 +25,7 @@ export default function CustomerDataTable({ list }: Props) {
   }, [pageSize])
 
   const [sortStatus, setSortStatus] = useState<DataTableSortStatus<CustomerTy>>({ columnAccessor: "#", direction: "asc" })
-  const [records, setRecords] = useState(sortBy(list.slice(0, pageSize), "id"))
+  const [records, setRecords] = useState(sortBy(list?.slice(0, pageSize), "id"))
 
   useEffect(() => {
     const myData = sortBy(list, sortStatus.columnAccessor)
@@ -36,7 +36,7 @@ export default function CustomerDataTable({ list }: Props) {
   useEffect(() => {
     const from = (page - 1) * pageSize
     const to = from + pageSize
-    setRecords(list.slice(from, to))
+    setRecords(list ? list.slice(from, to) : [])
   }, [page, pageSize])
 
   const [opened, { open, close }] = useDisclosure(false)
@@ -52,6 +52,7 @@ export default function CustomerDataTable({ list }: Props) {
         highlightOnHover
         textSelectionDisabled
         mih={150}
+        fetching={isLoading}
         records={records}
         borderRadius={"md"}
         mt={"lg"}

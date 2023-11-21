@@ -27,7 +27,8 @@
       "@/styles/*": ["styles/*"],
       "@/context/*": ["context/*"],
       "@/services/*": ["services/*"],
-      "@/constant/*": ["constant/*"]
+      "@/constant/*": ["constant/*"],
+      "@/hooks/*": ["hooks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".next/types/app/layout.tss", "app/auth/(unauthorized)/resetpassword"],

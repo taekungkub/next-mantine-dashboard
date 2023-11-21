@@ -1,6 +1,6 @@
 "use client"
-import { useDisclosure } from "@mantine/hooks"
-import { AppShell, Box, Burger, Group, LoadingOverlay, ScrollArea, Skeleton, rem } from "@mantine/core"
+import { useDisclosure, useMediaQuery } from "@mantine/hooks"
+import { AppShell, Box, Burger, Group, LoadingOverlay, ScrollArea, Skeleton, rem, useMantineTheme } from "@mantine/core"
 import { NavbarNested } from "@/components/NavbarNested/NavbarNested"
 import HeaderMegaMenu from "@/components/HeaderMegaMenu/HeaderMegaMenu"
 import { ChildrenProps } from "@/types/type"

@@ -1,3 +1,4 @@
+import axios from "axios"
 import { CustomerTy } from "../types/type"
 
 const BASE_URL = "https://dummyjson.com"
@@ -20,10 +21,18 @@ export default {
     const customers = await response.json()
     return customers
   },
+  async customers2() {
+    return axios.get<{
+      users: CustomerTy[]
+    }>(`${BASE_URL}/users`)
+  },
   async customerById(id: string): Promise<CustomerTy> {
     const response = await fetch(`${BASE_URL}/users/${id}`)
     const customers = await response.json()
     return customers
+  },
+  async customerById2(id: string) {
+    return axios.get<CustomerTy>(`${BASE_URL}/users/${id}`)
   },
 
   categories() {
