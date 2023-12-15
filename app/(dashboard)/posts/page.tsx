@@ -2,12 +2,9 @@
 
 import { Box, Button, Flex, Input, Paper, TextInput, Title } from "@mantine/core"
 import { useForm } from "@mantine/form"
-import axios from "axios"
 import { useSession } from "next-auth/react"
 import React, { useState } from "react"
-import useToast from "../../../hooks/useToast"
 import usePosts from "../../../hooks/usePosts"
-import { title } from "process"
 import { useRouter } from "next/navigation"
 
 type Props = {}

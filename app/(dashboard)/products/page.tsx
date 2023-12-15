@@ -1,13 +1,15 @@
+import { getProducts } from "@/hooks/useProduct"
 import ProductsTable from "./components/ProductTable"
-import DummyServices from "@/services/DummyServices"
+import { Suspense } from "react"
 
 export default async function Page() {
-  const res = await DummyServices.products()
-  const result = await res.json()
+  const products = await getProducts()
 
   return (
     <>
-      <ProductsTable data={result.products || []} />
+      <Suspense fallback={"loading..."}>
+        <ProductsTable data={products.products || []} />
+      </Suspense>
     </>
   )
 }

@@ -3,6 +3,7 @@ import axios from "axios"
 import { PostTy } from "../types/type"
 import useToast from "./useToast"
 import { useSession } from "next-auth/react"
+import { queryKey } from "../constant/query"
 
 function usePosts() {
   const toast = useToast()
@@ -42,7 +43,10 @@ function usePosts() {
     return res.data
   }
 
-  const { data, isLoading } = useQuery<PostTy[]>(["posts"], () => getAllPostsFn())
+  const { data, isLoading } = useQuery<PostTy[]>({
+    queryKey: ["post"],
+    queryFn: () => getAllPostsFn(),
+  })
 
   const { mutate: createPosts } = useMutation(({ formData }: { formData: FormPostTy }) => createPostFn({ ...formData }), {
     onSuccess(data) {

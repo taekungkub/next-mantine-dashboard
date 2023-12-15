@@ -6,6 +6,7 @@ import PageTitle from "@/components/PageTitle"
 
 export default async function Page() {
   const categoryData = await getCategories()
+
   const initProduct: any = {
     title: "",
     description: "",

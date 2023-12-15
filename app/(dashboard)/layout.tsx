@@ -11,7 +11,6 @@ import { usePathname } from "next/navigation"
 export default function Demo({ children }: ChildrenProps) {
   const [opened, { toggle }] = useDisclosure()
   const pathname = usePathname()
-
   const { data: session, status } = useSession()
 
   useEffect(() => {

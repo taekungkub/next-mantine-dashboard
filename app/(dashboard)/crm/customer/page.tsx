@@ -1,6 +1,6 @@
 import { SectionUserStats } from "../components/SectionCustomer"
 import CustomerDataTable from "../components/CustomerDataTable"
-import { fetchCustomer } from "@/hooks/useDummyJson"
+import { fetchCustomer } from "@/hooks/useCustomer"
 import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query"
 
 export default async function page() {
