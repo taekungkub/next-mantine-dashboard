@@ -1,11 +1,11 @@
 import React from "react"
-import { getCategories } from "@/hooks/useProduct"
 import { Box, Title } from "@mantine/core"
 import FormAddProduct from "../components/FormAddProduct"
 import PageTitle from "@/components/PageTitle"
+import { fetchCategories } from "../../../../lib/product.services"
 
 export default async function Page() {
-  const categoryData = await getCategories()
+  const categoryData = await fetchCategories()
 
   const initProduct: any = {
     title: "",

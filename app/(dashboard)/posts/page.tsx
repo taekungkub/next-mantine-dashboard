@@ -1,5 +1,4 @@
 "use client"
-
 import { Box, Button, Flex, Input, Paper, TextInput, Title } from "@mantine/core"
 import { useForm } from "@mantine/form"
 import { useSession } from "next-auth/react"
@@ -7,9 +6,7 @@ import React, { useState } from "react"
 import usePosts from "../../../hooks/usePosts"
 import { useRouter } from "next/navigation"
 
-type Props = {}
-
-export default function PostsPage({}: Props) {
+export default function PostsPage() {
   const form = useForm({
     initialValues: {
       title: "",
@@ -18,14 +15,16 @@ export default function PostsPage({}: Props) {
   })
 
   const { data: session } = useSession()
-  const { data: posts, isLoading: isLoadingPosts, createPosts, deletePost, updatePost } = usePosts()
+  const { usePostsQuery, onCreatePost, onDeletePost, onUpdatePost } = usePosts()
+  const { data: posts, isLoading: isLoadingPosts } = usePostsQuery()
+
   const [isEdit, setIsEdit] = useState(false)
   const [idEdit, setIdEdit] = useState(0)
   const router = useRouter()
 
   function handleSubmit() {
     if (!isEdit) {
-      createPosts({
+      onCreatePost({
         formData: {
           title: form.values.title,
           content: form.values.content,
@@ -34,7 +33,7 @@ export default function PostsPage({}: Props) {
       })
       form.setValues({ title: "", content: "" })
     } else {
-      updatePost({
+      onUpdatePost({
         id: idEdit,
         formData: {
           title: form.values.title,
@@ -97,7 +96,7 @@ export default function PostsPage({}: Props) {
                 >
                   Edit
                 </Button>
-                <Button variant={"outline"} size="xs" color="red" mt={20} onClick={() => deletePost(v.id)}>
+                <Button variant={"outline"} size="xs" color="red" mt={20} onClick={() => onDeletePost(v.id)}>
                   Delete
                 </Button>
               </Box>

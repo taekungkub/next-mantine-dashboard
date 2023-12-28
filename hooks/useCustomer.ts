@@ -1,44 +1,25 @@
 import { QueryClient, useQuery } from "@tanstack/react-query"
-import DummyServices from "../services/DummyServices"
-import { queryKey } from "@/constant/query"
-import { CustomerTy } from "../types/type"
-import { DUMMYJSON_BASE_URL } from "../constant/endpoints"
+import { queryKey } from "@/lib/constant/query"
+import { fetchCustomer } from "../lib/customer.services"
 
-export const fetchUsers = async (): Promise<{
-  users: CustomerTy[]
-}> => {
-  try {
-    const res = await fetch(`${DUMMYJSON_BASE_URL}/users`)
-    return res.json()
-  } catch (error) {
-    console.error(error)
-    throw error
+export default function useCustomer() {
+  const useCustomerQuery = () => {
+    return useQuery({
+      queryKey: [queryKey.CUSTOMERS],
+      queryFn: async () => fetchCustomer(),
+    })
   }
-}
 
-//for server
-export async function fetchCustomer() {
-  const queryClient = new QueryClient()
+  async function preFetchCustomer() {
+    const queryClient = new QueryClient()
+    await queryClient.prefetchQuery({
+      queryKey: [queryKey.CUSTOMERS],
+      queryFn: async () => fetchCustomer(),
+    })
+  }
 
-  await queryClient.prefetchQuery({
-    queryKey: [queryKey.CUSTOMERS],
-    queryFn: async () => fetchUsers(),
-  })
-}
-
-//for client component
-export const useCustomers = () => {
-  return useQuery({
-    queryKey: [queryKey.CUSTOMERS],
-    queryFn: async () => fetchUsers(),
-  })
-}
-
-export async function getCustomer(id: string): Promise<CustomerTy> {
-  try {
-    const res = await fetch(`${DUMMYJSON_BASE_URL}/users/${id}`)
-    return res.json()
-  } catch (e) {
-    throw e
+  return {
+    useCustomerQuery,
+    preFetchCustomer,
   }
 }

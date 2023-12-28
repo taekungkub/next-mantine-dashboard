@@ -1,8 +1,8 @@
 import React from "react"
-import { getProduct, getCategories } from "@/hooks/useProduct"
 import { Box, Text, Title } from "@mantine/core"
 import FormAddProduct from "../../components/FormAddProduct"
 import PageTitle from "@/components/PageTitle"
+import { fetchCategories, fetchProduct } from "../../../../../lib/product.services"
 
 type Props = {
   params: {
@@ -13,8 +13,8 @@ type Props = {
 export default async function Page({ params }: Props) {
   const id = params.id
 
-  const data = await getProduct(id)
-  const categorydata = await getCategories()
+  const data = await fetchProduct(id)
+  const categorydata = await fetchCategories()
 
   return (
     <div>

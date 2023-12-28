@@ -1,16 +1,20 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
-import usePost from "../../../../hooks/usePost"
+import React, { useState } from "react"
 import { useParams } from "next/navigation"
 import { Box, Button, Flex, Text, Title } from "@mantine/core"
 import { useSession } from "next-auth/react"
 import ModalPost from "../../../../components/ModalPost"
+import usePosts from "../../../../hooks/usePosts"
 
 type Props = {}
 
 export default function PostDetailPage({}: Props) {
-  const { postDetail, isLoading, isError, deletePost } = usePost()
+  const { usePostQery, onDeletePost } = usePosts()
+
+  const { postId } = useParams()
+
+  const { data: postDetail, isLoading, isError } = usePostQery(Number(postId))
   const { data: session } = useSession()
   const [openEditModal, setOpenEditModal] = useState(false)
 
@@ -26,15 +30,15 @@ export default function PostDetailPage({}: Props) {
     <Box>
       {!postDetail && "No data"}
       <Flex justify={"space-between"} align={"center"} gap={10}>
-        <Text fz={14} color={"dimmed"}>
-          {postDetail?.author.name}
+        <Text fz={14} c={"dimmed"}>
+          {postDetail?.author?.name}
         </Text>
         {session?.user.id === postDetail?.authorId && (
           <Flex gap={10}>
             <Button color={"yellow"} variant={"outline"} onClick={() => setOpenEditModal(!openEditModal)}>
               Edit
             </Button>
-            <Button color={"red"} variant={"outline"} onClick={() => deletePost()}>
+            <Button color={"red"} variant={"outline"} onClick={() => onDeletePost(Number(postId))}>
               Delete
             </Button>
           </Flex>

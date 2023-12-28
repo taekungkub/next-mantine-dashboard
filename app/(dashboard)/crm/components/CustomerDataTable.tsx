@@ -9,12 +9,13 @@ import { Anchor, Button } from "@mantine/core"
 import Link from "next/link"
 import { useDisclosure } from "@mantine/hooks"
 import EditCustomerDrawer from "../components/EditCustomerDrawer"
-import { useCustomers } from "@/hooks/useCustomer"
+import useCustomers from "@/hooks/useCustomer"
 
 const PAGE_SIZES = [10, 15, 20]
 
 export default function CustomerDataTable() {
-  const { data, isLoading } = useCustomers()
+  const { useCustomerQuery } = useCustomers()
+  const { data, isLoading } = useCustomerQuery()
 
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(PAGE_SIZES[1])

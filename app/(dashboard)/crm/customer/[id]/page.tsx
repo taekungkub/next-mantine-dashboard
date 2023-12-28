@@ -1,7 +1,7 @@
 import React from "react"
 import DummyServices from "@/services/DummyServices"
 import CustomerDetailSection from "../../components/CustomerDetailSection"
-import { getCustomer } from "@/hooks/useCustomer"
+import { fetchCustomerDetail } from "../../../../../lib/customer.services"
 
 type Props = {
   params: {
@@ -10,6 +10,6 @@ type Props = {
 }
 
 export default async function page({ params }: Props) {
-  const customer = await getCustomer(params.id)
+  const customer = await fetchCustomerDetail(params.id)
   return <div>{<CustomerDetailSection data={customer} />}</div>
 }

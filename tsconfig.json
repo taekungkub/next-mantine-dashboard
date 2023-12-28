@@ -27,7 +27,7 @@
       "@/styles/*": ["styles/*"],
       "@/context/*": ["context/*"],
       "@/services/*": ["services/*"],
-      "@/constant/*": ["constant/*"],
+      "@/constant/*": ["lib/constant/*"],
       "@/hooks/*": ["hooks/*"]
     }
   },

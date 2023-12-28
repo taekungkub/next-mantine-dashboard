@@ -3,7 +3,7 @@ import { Group, Code, ScrollArea, rem, Box } from "@mantine/core"
 import { LinksGroup } from "../NavbarLinksGroup/NavbarLinksGroup"
 import { Logo } from "./Logo"
 import classes from "./NavbarNested.module.css"
-import { navbarData } from "@/constant/navbar.data"
+import { navbarData } from "@/lib/constant/navbar.data"
 
 export function NavbarNested() {
   const links = navbarData.map((item) => <LinksGroup {...item} key={item.label} />)

@@ -1,9 +1,9 @@
-import { getProducts } from "@/hooks/useProduct"
 import ProductsTable from "./components/ProductTable"
 import { Suspense } from "react"
+import { fetchProducts } from "../../../lib/product.services"
 
 export default async function Page() {
-  const products = await getProducts()
+  const products = await fetchProducts()
 
   return (
     <>

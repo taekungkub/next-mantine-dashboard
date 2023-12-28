@@ -1,83 +1,75 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import axios from "axios"
 import { PostTy } from "../types/type"
 import useToast from "./useToast"
-import { useSession } from "next-auth/react"
-import { queryKey } from "../constant/query"
+import { FormPostTy, createPost, deletePost, getAllPosts, getPost, updatePost } from "../lib/post.services"
 
-function usePosts() {
+export default function usePosts() {
   const toast = useToast()
   const queryClient = useQueryClient()
 
-  const getAllPostsFn = async () => {
-    const res = await axios.get("/api/posts")
-    return res.data.data
-  }
-
-  const deletePostFn = async (id: number) => {
-    const res = await axios.delete(`/api/posts/${id}`)
-    return res.data
-  }
-
-  interface FormPostTy {
-    title: string
-    content: string
-    userId: number
-  }
-
-  const createPostFn = async ({ title, content, userId }: FormPostTy) => {
-    const res = await axios.post(`/api/posts`, {
-      title: title,
-      content: content,
-      userId: userId,
+  const usePostsQuery = () =>
+    useQuery<PostTy[]>({
+      queryKey: ["posts"],
+      queryFn: () => getAllPosts(),
     })
-    return res.data
-  }
 
-  const updatePostFn = async (id: number, { title, content, userId }: FormPostTy) => {
-    const res = await axios.put(`/api/posts/${id}`, {
-      title: title,
-      content: content,
-      userId: userId,
+  const usePostQery = (id: number) =>
+    useQuery<PostTy>({
+      queryKey: ["posts", id],
+      queryFn: () => getPost(id),
     })
-    return res.data
-  }
 
-  const { data, isLoading } = useQuery<PostTy[]>({
-    queryKey: ["post"],
-    queryFn: () => getAllPostsFn(),
-  })
-
-  const { mutate: createPosts } = useMutation(({ formData }: { formData: FormPostTy }) => createPostFn({ ...formData }), {
-    onSuccess(data) {
-      queryClient.invalidateQueries(["posts"])
-      toast.success("create success")
+  const { mutate: onCreatePost } = useMutation({
+    mutationFn: ({ formData }: { formData: FormPostTy }) => {
+      return createPost({ ...formData })
+    },
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ["posts"] })
+      toast.success("Create success")
     },
     onError(error: any) {},
   })
 
-  const { mutate: deletePost } = useMutation((id: number) => deletePostFn(id), {
-    onSuccess(data) {
-      queryClient.invalidateQueries(["posts"])
-      toast.success("delete success")
+  const { mutate: onDeletePost } = useMutation({
+    mutationFn: (id: number) => {
+      return deletePost(id)
+    },
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ["posts"] })
+      toast.success("Delete success")
     },
     onError(error: any) {},
   })
 
-  const { mutate: updatePost } = useMutation(({ id, formData }: { id: number; formData: FormPostTy }) => updatePostFn(id, formData), {
-    onSuccess(data) {
-      queryClient.invalidateQueries(["posts"])
-      toast.success("update success")
+  const { mutate: onUpdatePost } = useMutation({
+    mutationFn: ({ id, formData }: { id: number; formData: FormPostTy }) => {
+      return updatePost(id, formData)
+    },
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ["posts"] })
+      toast.success("Update success")
     },
     onError(error: any) {},
   })
+
+  const useUpdatePostDetail = () =>
+    useMutation({
+      mutationFn: ({ id, formData }: { id: number; formData: FormPostTy }) => {
+        return updatePost(id, formData)
+      },
+      onSuccess(res) {
+        queryClient.invalidateQueries({ queryKey: ["posts", res.data.id] })
+        toast.success("Update success id: " + res.data.id)
+      },
+      onError(error: any) {},
+    })
+
   return {
-    data,
-    isLoading,
-    deletePost,
-    createPosts,
-    updatePost,
+    usePostsQuery,
+    usePostQery,
+    onCreatePost,
+    onUpdatePost,
+    onDeletePost,
+    useUpdatePostDetail,
   }
 }
-
-export default usePosts

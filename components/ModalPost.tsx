@@ -1,9 +1,8 @@
 import { Button, Modal, Paper, TextInput } from "@mantine/core"
 import { useForm } from "@mantine/form"
-import { useDisclosure } from "@mantine/hooks"
 import React, { useEffect } from "react"
 import { PostTy } from "../types/type"
-import usePost from "../hooks/usePost"
+import usePosts from "../hooks/usePosts"
 
 type Props = {
   opened: boolean
@@ -13,7 +12,9 @@ type Props = {
 }
 
 export default function ModalPost({ opened, onClose, onOpen, data }: Props) {
-  const { updatePost, status } = usePost()
+  const { useUpdatePostDetail } = usePosts()
+
+  const { mutate: onUpdatePost, status } = useUpdatePostDetail()
 
   const form = useForm({
     initialValues: {
@@ -24,7 +25,8 @@ export default function ModalPost({ opened, onClose, onOpen, data }: Props) {
 
   function handleSubmit() {
     if (!data) return
-    updatePost({
+    onUpdatePost({
+      id: data.id,
       formData: {
         title: form.values.title,
         content: form.values.content,

@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react"
 
 import { Paper, Title, Text, TextInput, Button, Container, Group, Anchor, Center, Box, rem, NumberInput, Flex, Progress } from "@mantine/core"
-import { isNumberInput } from "@/helper/utils"
+import { isNumberInput } from "@/lib/helper/utils"
 
 export default function page() {
   const [pin1, setPin1] = useState("")
