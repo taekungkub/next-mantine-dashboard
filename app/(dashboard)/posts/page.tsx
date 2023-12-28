@@ -3,8 +3,8 @@ import { Box, Button, Flex, Input, Paper, TextInput, Title } from "@mantine/core
 import { useForm } from "@mantine/form"
 import { useSession } from "next-auth/react"
 import React, { useState } from "react"
-import usePosts from "../../../hooks/usePosts"
 import { useRouter } from "next/navigation"
+import usePosts from "@/hooks/usePosts"
 
 export default function PostsPage() {
   const form = useForm({

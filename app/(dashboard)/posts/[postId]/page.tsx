@@ -4,8 +4,8 @@ import React, { useState } from "react"
 import { useParams } from "next/navigation"
 import { Box, Button, Flex, Text, Title } from "@mantine/core"
 import { useSession } from "next-auth/react"
-import ModalPost from "../../../../components/ModalPost"
-import usePosts from "../../../../hooks/usePosts"
+import usePosts from "@/hooks/usePosts"
+import ModalPost from "@/components/ModalPost"
 
 type Props = {}
 
